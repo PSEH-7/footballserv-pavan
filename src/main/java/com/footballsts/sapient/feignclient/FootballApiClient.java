@@ -6,12 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-@FeignClient(name="football", url = "https://apiv2.apifootball.com")
+@FeignClient(name = "football", url = "https://apiv2.apifootball.com")
 public interface FootballApiClient {
 
-	@RequestMapping(method = RequestMethod.GET) 
+	@RequestMapping(method = RequestMethod.GET)
 	ResponseEntity<String> getLeagues(@RequestParam("action") String action,
 			@RequestParam("country_id") String countryId, @RequestParam("APIkey") String apikey);
+
+	@RequestMapping(method = RequestMethod.GET)
+	ResponseEntity<String> getCountries(@RequestParam("action") String action, @RequestParam("APIkey") String apikey);
+
+	@RequestMapping(method = RequestMethod.GET)
+	ResponseEntity<String> getStandings(@RequestParam("action") String action,
+			@RequestParam("league_id") String leagueId, @RequestParam("APIkey") String apikey);
 
 }
